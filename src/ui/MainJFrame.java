@@ -58,7 +58,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        btnFilter.setText("Filter Fleet");
+        btnFilter.setText("Search Fleet");
         btnFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFilterActionPerformed(evt);
