@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import model.car;
 import model.carFleet;
 import java.util.stream.Collectors;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -42,12 +43,11 @@ public class FilterJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFleet = new javax.swing.JTable();
         lblFilterTitle = new javax.swing.JLabel();
-        btnNumAvailable = new javax.swing.JButton();
         btnFirstAvailable = new javax.swing.JButton();
-        txtNumUnavailable = new javax.swing.JTextField();
-        lblHeadAvail = new javax.swing.JLabel();
-        lblHeadUnavailable = new javax.swing.JLabel();
         txtNumAvailable = new javax.swing.JTextField();
+        cmbAvailabilityStatus = new javax.swing.JComboBox<>();
+        lblAvailStatus = new javax.swing.JLabel();
+        lblStatusNum = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1201, 567));
 
@@ -82,13 +82,6 @@ public class FilterJPanel extends javax.swing.JPanel {
         lblFilterTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFilterTitle.setText("Filtered Car Fleet");
 
-        btnNumAvailable.setText("Number of Cars");
-        btnNumAvailable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNumAvailableActionPerformed(evt);
-            }
-        });
-
         btnFirstAvailable.setText("First Available Car");
         btnFirstAvailable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,9 +89,16 @@ public class FilterJPanel extends javax.swing.JPanel {
             }
         });
 
-        lblHeadAvail.setText("Available");
+        cmbAvailabilityStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Available", "Unavailable" }));
+        cmbAvailabilityStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbAvailabilityStatusActionPerformed(evt);
+            }
+        });
 
-        lblHeadUnavailable.setText("Unavailable");
+        lblAvailStatus.setText("Stauts of the Cars");
+
+        lblStatusNum.setText("Num");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,26 +106,23 @@ public class FilterJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblFilterTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFirstAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnNumAvailable)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
                                 .addComponent(txtNumAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblHeadAvail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnFirstAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(txtNumUnavailable, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblHeadUnavailable))))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
+                                .addComponent(lblAvailStatus)
+                                .addGap(31, 31, 31)
+                                .addComponent(lblStatusNum)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,42 +131,45 @@ public class FilterJPanel extends javax.swing.JPanel {
                 .addComponent(lblFilterTitle)
                 .addGap(46, 46, 46)
                 .addComponent(btnFirstAvailable)
-                .addGap(10, 10, 10)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHeadAvail)
-                    .addComponent(lblHeadUnavailable))
+                    .addComponent(lblAvailStatus)
+                    .addComponent(lblStatusNum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNumAvailable)
-                    .addComponent(txtNumUnavailable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbAvailabilityStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+
+    
     private void btnFirstAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstAvailableActionPerformed
         // TODO add your handling code here:
         
         ArrayList tempFleet = new ArrayList<car>();
 
         tempFleet.clear();
-        
-        for (car c:fleet.getFleet()){
+        for (car c:fleet.getFleet()){            
             tempFleet.add(c);
         }
         Collections.sort(tempFleet);
+        
         populateSelectedTable(tempFleet, 1);
     }//GEN-LAST:event_btnFirstAvailableActionPerformed
 
-    private void btnNumAvailableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNumAvailableActionPerformed
+    private void cmbAvailabilityStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAvailabilityStatusActionPerformed
         // TODO add your handling code here:
+        String selectedValue = cmbAvailabilityStatus.getSelectedItem().toString();
         ArrayList tempFleetAvail = new ArrayList<car>();
         ArrayList tempFleetUnavail = new ArrayList<car>();
         
-        int numAvail = 0;
-        int numUnavail = 0;
+        tempFleetAvail.clear();
+        tempFleetUnavail.clear();
+        
         for (car c:fleet.getFleet()){
             if (c.isAvailability()){
                 tempFleetAvail.add(c);
@@ -178,23 +178,30 @@ public class FilterJPanel extends javax.swing.JPanel {
                 tempFleetUnavail.add(c);
             }
         }
-        txtNumAvailable.setText(String.valueOf(tempFleetAvail.size()));
-        txtNumUnavailable.setText(String.valueOf(tempFleetUnavail.size()));
         
-    }//GEN-LAST:event_btnNumAvailableActionPerformed
+        if ("Available".equals(selectedValue)){   
+            txtNumAvailable.setText(String.valueOf(tempFleetAvail.size()));
+            populateSelectedTable(tempFleetAvail, tempFleetAvail.size());
+        }
+        else{
+            txtNumAvailable.setText(String.valueOf(tempFleetUnavail.size()));
+            populateSelectedTable(tempFleetUnavail, tempFleetUnavail.size());
+        }
+        
+        
+    }//GEN-LAST:event_cmbAvailabilityStatusActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirstAvailable;
-    private javax.swing.JButton btnNumAvailable;
+    private javax.swing.JComboBox<String> cmbAvailabilityStatus;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAvailStatus;
     private javax.swing.JLabel lblFilterTitle;
-    private javax.swing.JLabel lblHeadAvail;
-    private javax.swing.JLabel lblHeadUnavailable;
+    private javax.swing.JLabel lblStatusNum;
     private javax.swing.JTable tblFleet;
     private javax.swing.JTextField txtNumAvailable;
-    private javax.swing.JTextField txtNumUnavailable;
     // End of variables declaration//GEN-END:variables
 
     private void populateSelectedTable(ArrayList<car> selectedFleet, int limit) {
