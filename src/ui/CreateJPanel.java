@@ -7,7 +7,8 @@ package ui;
 import javax.swing.JOptionPane;
 import model.car;
 import model.carFleet;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /**
  *
  * @author sirip
@@ -23,6 +24,11 @@ public class CreateJPanel extends javax.swing.JPanel {
         this.fleet = fleet;
         
     }
+    String regexManfName = "^[a-zA-Z ]+$";
+    String regexNumberField = "^[0-9]+$";
+    String regexSerialNumber = "^[A-Z0-9]{5}$";
+    String regexModelNumber = "^[a-zA-Z0-9]{1,6}$";
+    String regexCity = "^[a-zA-Z ]+$";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,43 +178,82 @@ public class CreateJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public boolean regexEvaluator(String input, String regexPattern, String whichPattern){
+        if (input.matches(regexPattern) == true) {
+            return true;
+        }
+        else {
+            String errorMSG = String.format("Please enter valid %s", whichPattern);
+            JOptionPane.showMessageDialog(this, errorMSG);
+            return false;
+        }
+    }
+    
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        car c = new car();
         String manufacturer = txtManufacturer.getText();
         boolean availability = checkboxAvailability.isSelected();
-        int manfyear = Integer.parseInt(txtManfyear.getText());
-        int nseats = Integer.parseInt(txtNseats.getText());
+        try {
+            int manfyear = Integer.parseInt(txtManfyear.getText());
+            c.setManfyear(manfyear);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Manucaturing year must be an integer."); 
+        }
+        try {
+            int nseats = Integer.parseInt(txtNseats.getText());
+            c.setNseats(nseats);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Number of seats must be an integer."); 
+        }
         String serialno = txtSerialno.getText();
         String modelno = txtModelno.getText();
         String city = txtCity.getText();
         boolean expired = checkboxExpired.isSelected();
-        int eta = Integer.parseInt(txtEta.getText());
+        try {
+            int eta = Integer.parseInt(txtEta.getText());
+            c.setEta(eta);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "ETA minutes must be an integer."); 
+        }
+
+        boolean checkManfName = regexEvaluator(manufacturer, regexManfName, "Manufacturer Name");
+        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "Serial Number");
+        boolean checkModelNumber = regexEvaluator(serialno, regexModelNumber, "Model Number");
+        boolean checkCity = regexEvaluator(city, regexCity, "City");
+
         
-        car c = new car();
+        if (checkManfName && checkSerialNumber && checkModelNumber &&
+                checkCity) {                  
+
+            c.setManufacturer(manufacturer);
+            c.setAvailability(checkboxAvailability.isSelected());
+            
+            
+            c.setSerialno(serialno);
+            c.setModelno(modelno);
+            c.setCity(city);
+            c.setExpired(checkboxExpired.isSelected());
+            
+
+            fleet.addNewCar(c);
+
+            JOptionPane.showMessageDialog(this, "New Car Added to the fleet.");
+            
+            txtManufacturer.setText("");
+            checkboxAvailability.setSelected(false);  
+            txtManfyear.setText("");
+            txtNseats.setText("");
+            txtSerialno.setText("");
+            txtModelno.setText("");
+            txtCity.setText("");
+            checkboxExpired.setSelected(false);
+            txtEta.setText("");    
+            
+        }
+
         
-        c.setManufacturer(manufacturer);
-        c.setAvailability(checkboxAvailability.isSelected());
-        c.setManfyear(manfyear);
-        c.setNseats(nseats);
-        c.setSerialno(serialno);
-        c.setModelno(modelno);
-        c.setCity(city);
-        c.setExpired(checkboxExpired.isSelected());
-        c.setEta(eta);
-        
-        fleet.addNewCar(c);
-        
-        JOptionPane.showMessageDialog(this, "New Car Added to the fleet.");
-        
-        txtManufacturer.setText("");
-        checkboxAvailability.setSelected(false);  
-        txtManfyear.setText("");
-        txtNseats.setText("");
-        txtSerialno.setText("");
-        txtModelno.setText("");
-        txtCity.setText("");
-        checkboxExpired.setSelected(false);
-        txtEta.setText("");      
+  
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
