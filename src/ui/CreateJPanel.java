@@ -176,7 +176,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         String manufacturer = txtManufacturer.getText();
         boolean availability = checkboxAvailability.isSelected();
-        String manfyear = txtManfyear.getText();
+        int manfyear = Integer.parseInt(txtManfyear.getText());
         int nseats = Integer.parseInt(txtNseats.getText());
         String serialno = txtSerialno.getText();
         String modelno = txtModelno.getText();

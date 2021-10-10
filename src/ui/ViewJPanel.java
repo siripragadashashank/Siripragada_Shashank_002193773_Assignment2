@@ -32,7 +32,6 @@ public class ViewJPanel extends javax.swing.JPanel {
     public ViewJPanel(carFleet fleet) {
         initComponents();
         
-        fleet.createSampleFleet();
         this.fleet = fleet;
         populateTable();
     }
@@ -303,7 +302,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         txtManufacturer.setText(selectedCar.getManufacturer());
         checkboxAvailability.setSelected(selectedCar.isAvailability());
-        txtManfyear.setText(selectedCar.getManfyear());
+        txtManfyear.setText(String.valueOf(selectedCar.getManfyear()));
         txtNseats.setText(String.valueOf(selectedCar.getNseats()));
         txtSerialno.setText(selectedCar.getSerialno());
         txtModelno.setText(selectedCar.getModelno());
@@ -328,7 +327,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         
         String manufacturer = txtManufacturer.getText();
         boolean availability = checkboxAvailability.isSelected();
-        String manfyear = txtManfyear.getText();
+        int manfyear = Integer.parseInt(txtManfyear.getText());
         int nseats = Integer.parseInt(txtNseats.getText());
         String serialno = txtSerialno.getText();
         String modelno = txtModelno.getText();

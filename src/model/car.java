@@ -12,7 +12,7 @@ public class car implements Comparable<car> {
     
     private String manufacturer;
     private boolean availability;
-    private String manfyear;
+    private int manfyear;
     private int nseats;
     private String serialno;
     private String modelno;
@@ -20,7 +20,7 @@ public class car implements Comparable<car> {
     private boolean expired;
     private int eta;
 
-    public car(String manufacturer, boolean availability, String manfyear, int nseats, String serialno, String modelno, String city, boolean expired, int eta) {
+    public car(String manufacturer, boolean availability, int manfyear, int nseats, String serialno, String modelno, String city, boolean expired, int eta) {
         this.manufacturer = manufacturer;
         this.availability = availability;
         this.manfyear = manfyear;
@@ -54,11 +54,11 @@ public class car implements Comparable<car> {
     }
 
 
-    public String getManfyear() {
+    public int getManfyear() {
         return manfyear;
     }
 
-    public void setManfyear(String manfyear) {
+    public void setManfyear(int manfyear) {
         this.manfyear = manfyear;
     }
 
