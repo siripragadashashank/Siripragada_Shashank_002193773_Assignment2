@@ -37,6 +37,7 @@ public class MainJFrame extends javax.swing.JFrame {
         controlPanel = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
+        btnFilter = new javax.swing.JButton();
         viewPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,6 +58,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        btnFilter.setText("Filter Fleet");
+        btnFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFilterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout controlPanelLayout = new javax.swing.GroupLayout(controlPanel);
         controlPanel.setLayout(controlPanelLayout);
         controlPanelLayout.setHorizontalGroup(
@@ -65,7 +73,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         controlPanelLayout.setVerticalGroup(
@@ -75,7 +84,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(btnCreate)
                 .addGap(35, 35, 35)
                 .addComponent(btnView)
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(btnFilter)
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         splitPane.setLeftComponent(controlPanel);
@@ -120,6 +131,12 @@ public class MainJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnViewActionPerformed
 
+    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
+        // TODO add your handling code here:
+        FilterJPanel filterPanel = new FilterJPanel(fleet);
+        splitPane.setRightComponent(filterPanel);
+    }//GEN-LAST:event_btnFilterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -157,6 +174,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnView;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JSplitPane splitPane;

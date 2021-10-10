@@ -8,7 +8,7 @@ package model;
  *
  * @author sirip
  */
-public class car {
+public class car implements Comparable<car> {
     
     private String manufacturer;
     private boolean availability;
@@ -20,6 +20,23 @@ public class car {
     private boolean expired;
     private int eta;
 
+    public car(String manufacturer, boolean availability, String manfyear, int nseats, String serialno, String modelno, String city, boolean expired, int eta) {
+        this.manufacturer = manufacturer;
+        this.availability = availability;
+        this.manfyear = manfyear;
+        this.nseats = nseats;
+        this.serialno = serialno;
+        this.modelno = modelno;
+        this.city = city;
+        this.expired = expired;
+        this.eta = eta;
+    }
+    
+    public car(){
+        
+    }
+
+    
     public String getManufacturer() {
         return manufacturer;
     }
@@ -97,5 +114,12 @@ public class car {
     public String toString(){
         return manufacturer;
     }
+
+    @Override
+    public int compareTo(car comparecar) {
+        int compareeta = ((car)comparecar).getEta();
+        return this.eta-compareeta;
+    }
+    
     
 }

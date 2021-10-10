@@ -174,10 +174,6 @@ public class CreateJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-//        String name = txtName.getText();
-//        double price = Double.parseDouble(txtPrice.getText());
-//        String date = txtDate.getText();
-//        int quantity = Integer.parseInt(txtQuantity.getText());
         String manufacturer = txtManufacturer.getText();
         boolean availability = checkboxAvailability.isSelected();
         String manfyear = txtManfyear.getText();
@@ -188,7 +184,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         boolean expired = checkboxExpired.isSelected();
         int eta = Integer.parseInt(txtEta.getText());
         
-        car c = fleet.addNewCar();
+        car c = new car();
         
         c.setManufacturer(manufacturer);
         c.setAvailability(checkboxAvailability.isSelected());
@@ -199,6 +195,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         c.setCity(city);
         c.setExpired(checkboxExpired.isSelected());
         c.setEta(eta);
+        
+        fleet.addNewCar(c);
         
         JOptionPane.showMessageDialog(this, "New Car Added to the fleet.");
         
