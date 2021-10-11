@@ -23,12 +23,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblFilterTitle" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnFirstAvailable" min="-2" pref="182" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnInputYear" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtInputYear" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblAvailStatus" pref="100" max="32767" attributes="0"/>
                                   <Component id="cmbAvailabilityStatus" max="32767" attributes="0"/>
@@ -43,48 +54,43 @@
                                   <Component id="cmbManufacturer" max="32767" attributes="0"/>
                                   <Component id="lblAvailStatus1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblAvailStatus2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="7" pref="7" max="-2" attributes="0"/>
-                                      <Component id="cmbCity" min="-2" pref="105" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnSerialSearch" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtSerialSearch" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                      <Component id="btnModelSearch" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtModelSearch" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnFirstAvailable" min="-2" pref="182" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
-                                      <Component id="btnInputYear" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtInputYear" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                                      <Component id="bthSearchSeats" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtMinSeats" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtMaxSeats" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="144" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="btnModelSearch" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="btnExpiredMtn" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="bthSearchSeats" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtMinSeats" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="txtMaxSeats" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lblAvailStatus2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="txtModelSearch" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="btnSerialSearch" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtSerialSearch" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace pref="51" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="cmbCity" min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="btnExpiredMtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="124" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -93,46 +99,45 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="lblFilterTitle" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnFirstAvailable" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnInputYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtInputYear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="bthSearchSeats" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMinSeats" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMaxSeats" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblAvailStatus2" pref="17" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="bthSearchSeats" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMinSeats" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMaxSeats" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAvailStatus2" alignment="3" max="32767" attributes="0"/>
                           <Component id="cmbCity" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnModelSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtModelSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblAvailStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblStatusNum" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAvailStatus1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnFirstAvailable" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                              <Component id="btnInputYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtInputYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="cmbAvailabilityStatus" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNumAvailable" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbManufacturer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnExpiredMtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnSerialSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSerialSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace pref="3" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAvailStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStatusNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAvailStatus1" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="cmbAvailabilityStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNumAvailable" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbManufacturer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSerialSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtSerialSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnModelSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExpiredMtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtModelSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="331" max="-2" attributes="0"/>
@@ -428,6 +433,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Search by Model No."/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModelSearchActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtModelSearch">
       <Properties>
@@ -436,6 +444,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Input Model No."/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtModelSearchMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
