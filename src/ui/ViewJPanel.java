@@ -35,6 +35,11 @@ public class ViewJPanel extends javax.swing.JPanel {
         this.fleet = fleet;
         populateTable();
     }
+    String regexManfName = "^[a-zA-Z ]+$";
+    String regexNumberField = "^[0-9]+$";
+    String regexSerialNumber = "^[A-Z0-9]{5}$";
+    String regexModelNumber = "^[a-zA-Z0-9]{1,8}$";
+    String regexCity = "^[a-zA-Z ]+$";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -314,7 +319,17 @@ public class ViewJPanel extends javax.swing.JPanel {
         txtEta.setText(String.valueOf(selectedCar.getEta()));
   
     }//GEN-LAST:event_bntViewActionPerformed
-
+    public boolean regexEvaluator(String input, String regexPattern, String whichPattern){
+        if (input.matches(regexPattern) == true) {
+            return true;
+        }
+        else {
+            String errorMSG = String.format("Please enter valid %s", whichPattern);
+            JOptionPane.showMessageDialog(this, errorMSG);
+            return false;
+        }
+    }
+    
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
         int selectedRowIndex = tblFleet.getSelectedRow();
@@ -329,24 +344,71 @@ public class ViewJPanel extends javax.swing.JPanel {
         car c = (car) model.getValueAt(selectedRowIndex, 0);
         
         String manufacturer = txtManufacturer.getText();
-        boolean availability = checkboxAvailability.isSelected();
-        int manfyear = Integer.parseInt(txtManfyear.getText());
-        int nseats = Integer.parseInt(txtNseats.getText());
         String serialno = txtSerialno.getText();
         String modelno = txtModelno.getText();
         String city = txtCity.getText();
-        boolean expired = checkboxExpired.isSelected();
-        int eta = Integer.parseInt(txtEta.getText());
+        
+        
+        boolean checkSerialUnique = true;
+        boolean checkYearValid = true;
+        
+        boolean checkManfName = regexEvaluator(manufacturer, regexManfName, "Manufacturer Name");       
+        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "Serial Number [5 chars Uppercase Aplhanumeric]");
+        boolean checkModelNumber = regexEvaluator(modelno, regexModelNumber, "Model Number");
+        boolean checkCity = regexEvaluator(city, regexCity, "City");
+        
+        try {
+            int manfyear = Integer.parseInt(txtManfyear.getText());
+            c.setManfyear(manfyear);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Manufacturing year must be an integer."); 
+        }
+        try {
+            int nseats = Integer.parseInt(txtNseats.getText());
+            c.setNseats(nseats);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "Number of seats must be an integer."); 
+        }  
+        try {
+            int eta = Integer.parseInt(txtEta.getText());
+            c.setEta(eta);
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(null, "ETA minutes must be an integer."); 
+        }        
+        
+        for (car cr: fleet.getFleet()){
+            if (cr.getSerialno().equals(serialno)){
+                checkSerialUnique = false;
+                JOptionPane.showMessageDialog(this, "Please enter a unique serial number."); 
+            } 
+        }
+        if (c.getManfyear()>=2021 || c.getManfyear()<=1980){
+            checkYearValid = false;
+            JOptionPane.showMessageDialog(this, "Please enter a valid Year of Manufacturing (>1980 and <2021).");
+        }
+        
+        if (checkManfName && checkSerialNumber && checkModelNumber &&
+                checkCity && checkSerialUnique && checkYearValid) {                  
+
+            c.setManufacturer(manufacturer);
+            c.setAvailability(checkboxAvailability.isSelected());
+            c.setSerialno(serialno);
+            c.setModelno(modelno);
+            c.setCity(city);
+            c.setExpired(checkboxExpired.isSelected());
+            
+            Date now = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String datestring = formatter.format(now);        
+            
+        
+            fmtFieldLastUpdated.setText(datestring);
+            
+
+            JOptionPane.showMessageDialog(this, "Car data updated successfully.");
           
-        c.setManufacturer(manufacturer);
-        c.setAvailability(checkboxAvailability.isSelected());
-        c.setManfyear(manfyear);
-        c.setNseats(nseats);
-        c.setSerialno(serialno);
-        c.setModelno(modelno);
-        c.setCity(city);
-        c.setExpired(checkboxExpired.isSelected());
-        c.setEta(eta);     
+            
+        }   
                 
         model.setValueAt(c, selectedRowIndex, 0);
         model.setValueAt(c.isAvailability(), selectedRowIndex, 1);
@@ -359,12 +421,7 @@ public class ViewJPanel extends javax.swing.JPanel {
         model.setValueAt(c.getEta(), selectedRowIndex, 8);
         
         
-        Date now = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String datestring = formatter.format(now);        
-        
-        JOptionPane.showMessageDialog(this, "Car data updated successfully.");
-        fmtFieldLastUpdated.setText(datestring);
+ 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 

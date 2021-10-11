@@ -193,8 +193,6 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         car c = new car();
         String manufacturer = txtManufacturer.getText();
-//        boolean availability = checkboxAvailability.isSelected();
-//        boolean expired = checkboxExpired.isSelected();
         String serialno = txtSerialno.getText();
         String modelno = txtModelno.getText();
         String city = txtCity.getText();
@@ -204,8 +202,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         boolean checkYearValid = true;
         
         boolean checkManfName = regexEvaluator(manufacturer, regexManfName, "Manufacturer Name");       
-        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "5 character Uppercase Aplhanumeric Serial Number");
-        boolean checkModelNumber = regexEvaluator(serialno, regexModelNumber, "Model Number");
+        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "Serial Number [5 chars Uppercase Aplhanumeric]");
+        boolean checkModelNumber = regexEvaluator(modelno, regexModelNumber, "Model Number");
         boolean checkCity = regexEvaluator(city, regexCity, "City");
         
         
