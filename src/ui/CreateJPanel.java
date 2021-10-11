@@ -27,7 +27,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     String regexManfName = "^[a-zA-Z ]+$";
     String regexNumberField = "^[0-9]+$";
     String regexSerialNumber = "^[A-Z0-9]{5}$";
-    String regexModelNumber = "^[a-zA-Z0-9]{1,6}$";
+    String regexModelNumber = "^[a-zA-Z0-9]{1,8}$";
     String regexCity = "^[a-zA-Z ]+$";
 
     /**
@@ -193,7 +193,22 @@ public class CreateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         car c = new car();
         String manufacturer = txtManufacturer.getText();
-        boolean availability = checkboxAvailability.isSelected();
+//        boolean availability = checkboxAvailability.isSelected();
+//        boolean expired = checkboxExpired.isSelected();
+        String serialno = txtSerialno.getText();
+        String modelno = txtModelno.getText();
+        String city = txtCity.getText();
+        
+        
+        boolean checkSerialUnique = true;
+        boolean checkYearValid = true;
+        
+        boolean checkManfName = regexEvaluator(manufacturer, regexManfName, "Manufacturer Name");       
+        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "5 character Uppercase Aplhanumeric Serial Number");
+        boolean checkModelNumber = regexEvaluator(serialno, regexModelNumber, "Model Number");
+        boolean checkCity = regexEvaluator(city, regexCity, "City");
+        
+        
         try {
             int manfyear = Integer.parseInt(txtManfyear.getText());
             c.setManfyear(manfyear);
@@ -205,38 +220,38 @@ public class CreateJPanel extends javax.swing.JPanel {
             c.setNseats(nseats);
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Number of seats must be an integer."); 
-        }
-        String serialno = txtSerialno.getText();
-        String modelno = txtModelno.getText();
-        String city = txtCity.getText();
-        boolean expired = checkboxExpired.isSelected();
+        }  
         try {
             int eta = Integer.parseInt(txtEta.getText());
             c.setEta(eta);
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "ETA minutes must be an integer."); 
+        }        
+        
+        for (car cr: fleet.getFleet()){
+            if (cr.getSerialno().equals(serialno)){
+                checkSerialUnique = false;
+                JOptionPane.showMessageDialog(this, "Please enter a unique serial number."); 
+            } 
         }
-
-        boolean checkManfName = regexEvaluator(manufacturer, regexManfName, "Manufacturer Name");
-        boolean checkSerialNumber = regexEvaluator(serialno, regexSerialNumber, "Serial Number");
-        boolean checkModelNumber = regexEvaluator(serialno, regexModelNumber, "Model Number");
-        boolean checkCity = regexEvaluator(city, regexCity, "City");
+        if (c.getManfyear()>=2021 || c.getManfyear()<=1980){
+            checkYearValid = false;
+            JOptionPane.showMessageDialog(this, "Please enter a valid Year of Manufacturing (>1980 and <2021).");
+        }
 
         
         if (checkManfName && checkSerialNumber && checkModelNumber &&
-                checkCity) {                  
+                checkCity && checkSerialUnique && checkYearValid) {                  
 
             c.setManufacturer(manufacturer);
             c.setAvailability(checkboxAvailability.isSelected());
-            
-            
             c.setSerialno(serialno);
             c.setModelno(modelno);
             c.setCity(city);
             c.setExpired(checkboxExpired.isSelected());
             
-
             fleet.addNewCar(c);
+            
 
             JOptionPane.showMessageDialog(this, "New Car Added to the fleet.");
             
